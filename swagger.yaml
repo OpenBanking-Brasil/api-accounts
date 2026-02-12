@@ -89,7 +89,7 @@ info:
     ```
 
     Para consultar as regras aplicáveis ao comportamento do transacionID de acordo com o status da transação, consultar a página [Orientações - Contas](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/193658890)
-  version: 2.5.0-beta.2
+  version: 2.5.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -1421,9 +1421,9 @@ components:
       in: query
       name: fromBookingDate
       description: |
-        Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).   
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo toBookingDate seja informado. 
-        Caso não seja informado, deve ser assumido o dia atual.
+        Data inicial de filtragem. O período máximo utilizado no filtro é de 7 dias no passado, inclusive (D-6), e 12 meses no futuro. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+        
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo toBookingDate seja informado. Caso não seja informado, deve ser assumido o dia atual.  
       required: false
       schema:
         type: string
@@ -1434,9 +1434,9 @@ components:
       in: query
       name: toBookingDate
       description: |
-        Data final de filtragem. O período máximo utilizado no filtro é de 7 dias inclusive (D-6).   
-        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromBookingDate seja informado. 
-        Caso não seja informado, deve ser assumido o dia atual.
+        Data final de filtragem. O período máximo utilizado no filtro é de 7 dias no passado, inclusive (D-6), e 12 meses no futuro. A filtragem deve ser feita utilizando o campo `transactionDateTime`.
+        
+        [Restrição] Deve obrigatoriamente ser enviado caso o campo fromBookingDate seja informado. Caso não seja informado, deve ser assumido o dia atual.  
       required: false
       schema:
         type: string
