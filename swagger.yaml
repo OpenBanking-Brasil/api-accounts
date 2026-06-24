@@ -89,7 +89,7 @@ info:
     ```
 
     Para consultar as regras aplicáveis ao comportamento do transacionID de acordo com o status da transação, consultar a página [Orientações - Contas](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/193658890)
-  version: 2.5.0
+  version: 2.5.1
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -421,7 +421,14 @@ paths:
         - Accounts
       summary: Obtém os saldos reservados em produtos caixinhas/reserva.
       operationId: accountsGetAccountsAccountIdReservedBalances
-      description: Método para obter os saldos reservados em produtos caixinhas/reserva.
+      description: |
+        Método para obter os saldos reservados em produtos caixinhas/reserva.
+
+        [RESTRIÇÃO] Está no escopo de compartilhamento da API Contas: Reservas sem rendimento, como forma se separar dinheiro para gasto futuro, e Reservas com rendimento, mas não atreladas a um investimento associado ao CPF/CNPJ do cliente.
+        
+        Nos casos em que o produto é ofertado pela transmissora mas o cliente não possui reserva de saldo, a listagem do endpoint reserved-balances deve vir vazia, com status code 200.
+        
+        Para instituições que não possuam o produto reserva de saldo, deve ser retornado o HTTP Status Code 404 – Not Found, seguindo os padrões de response para as APIs do ecossistema.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
